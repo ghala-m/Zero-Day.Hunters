@@ -1,5 +1,57 @@
-'use strict';
+"use strict"
 
+
+// FAQ Toggle Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click", () => {
+      // Toggle active class for current item
+      item.classList.toggle("active");
+
+      // Close other open items
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          otherItem.classList.remove("active");
+        }
+      });
+    });
+  });
+});
+
+const navToggle = document.querySelector('.nav-toggle');
+const navigation = document.querySelector('.navigation');
+
+navToggle.addEventListener('click', () => {
+    navigation.classList.toggle('show-nav');
+});
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+  document.querySelector('.navigation').classList.toggle('show-nav');
+});
+
+
+// الحصول على كل البطاقات
+const cards = document.querySelectorAll(".card");
+
+// إنشاء المراقب للتأكد من عرض العناصر عند التمرير
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  {
+    threshold: 0.2, // بدء الحركة عند ظهور 20% من البطاقة
+  }
+);
+
+// تطبيق المراقب على كل البطاقات
+cards.forEach((card) => observer.observe(card));
 
 
 /**
@@ -119,3 +171,8 @@ addEventOnElements(hoverElements, "mouseover", function () {
 addEventOnElements(hoverElements, "mouseout", function () {
   cursor.classList.remove("hovered");
 });
+
+
+
+
+
