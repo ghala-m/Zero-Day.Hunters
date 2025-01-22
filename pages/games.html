@@ -1,126 +1,3508 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>games and more !</title>
+    <meta name="title" content="Zero-Day Hunters - تحديات أمنية تفاعلية!">
+    <meta name="description" content="Zero-Day Hunters - منصة تعليمية تفاعلية للأمن السيبراني.">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Work+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preload" as="image" href="./images/hero-banner.png">
+    <link rel="preload" as="image" href="./images/hero-banner-bg.png">
+    <style>
+       
+       :root {
+    --primary-purple: #18005a;
+    --light-purple: #7e57c2;
+    --dark-purple: #2a0066;
+    --white: #ffffff;
+    --gray: #666;
+    --gold: gold;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --error-red: #ff4444;
+    --success-green: #00C851;
+}
 
-  <!-- 
-    - primary meta tags
-  -->
-  <title>Zero-Day Hunters - Play ,Try ,Learn ,Discover and more!</title>
-  <meta name="title" content="Unigine - Epic Games Made For True Gamers!">
-  <meta name="description" content="This is an esports and gaming html template made by codewithsadee">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxanium', sans-serif;
+}
 
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+body {
+    background-image: url("./body-bg.jpg");
+    background-color: var(--primary-purple);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.6;
+}
 
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Work+Sans:wght@600&display=swap"
-    rel="stylesheet">
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--white);
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 20px 0 0 20px;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
 
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+.sidebar.collapsed {
+    width: 80px;
+}
 
-  <!-- 
-    - preload images
-  -->
-  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-bg.png">
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .menu-item span {
+    display: none;
+}
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-text {
+    color: var(--primary-purple);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    color: var(--primary-purple);
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: var(--light-purple);
+    color: var(--white);
+    transform: translateX(-5px);
+}
+
+.menu-item.active {
+    background-color: var(--light-purple);
+    color: var(--white);
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-item span {
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.toggle-sidebar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: var(--light-purple);
+    border: none;
+    color: var(--white);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-sidebar:hover {
+    background: var(--dark-purple);
+    transform: scale(1.1);
+}
+
+.main-content {
+    margin-right: 250px;
+    padding: 30px;
+    transition: margin-right 0.3s ease;
+}
+
+.main-content.expanded {
+    margin-right: 80px;
+}
+
+.games-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: var(--dark-purple);
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.247);
+    color: var(--primary-purple);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--light-purple);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.game-icon {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-purple);
+    color: var(--white);
+    font-size: 3rem;
+}
+
+.game-header {
+    padding: 15px;
+}
+
+.game-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-purple);
+    margin: 0;
+}
+
+.game-points {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.game-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rating {
+    color: var(--gold);
+}
+
+.game-difficulty {
+    background-color: var(--light-purple);
+    color: var(--white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.game-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 16px;
+    border-radius: 0 15px 0 15px;
+    font-size: 0.8rem;
+    background: var(--success-green);
+    color: var(--white);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+.game-status.locked {
+    background: var(--gray);
+}
+
+.achievement-icon {
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--gray);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--success-green);
+    transition: width 0.3s ease;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: var(--white);
+    background-color: var(--success-green);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+}
+
+.notification.error {
+    background-color: var(--error-red);
+}
+
+.user-points {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.daily-challenge {
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.daily-challenge h3 {
+    color: var(--primary-purple);
+    margin: 0 0 10px 0;
+}
+
+.daily-challenge p {
+    color: var(--gray);
+    margin: 0 0 15px 0;
+}
+
+.daily-challenge button {
+    padding: 10px 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.daily-challenge button:hover {
+    background-color: var(--dark-purple);
+}
+
+.challenge-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 85%;
+    max-width: 1200px;
+    height: 85%;
+    max-height: 800px;
+    background-color: var(--primary-purple);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    color: var(--white);
+    display: none;
+    opacity: 0;
+    border-radius: 20px;
+}
+
+.challenge-panel.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    display: block;
+}
+
+.challenge-header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.challenge-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.close-challenge {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.challenge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: calc(100% - 60px);
+}
+
+.challenge-description {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.challenge-timer {
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.challenge-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.challenge-actions button {
+    padding: 12px 25px;
+    background: var(--light-purple);
+    border: none;
+    border-radius: 12px;
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.challenge-actions button:hover {
+    background: var(--dark-purple);
+    transform: translateY(-2px);
+}
+
+.flag-input {
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    bottom: 175px;
+    right: 100px;
+    z-index: 1000;
+}
+
+.flag-input input {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid var(--light-purple);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--primary-purple);
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.flag-input input:focus {
+    outline: none;
+    border-color: var(--dark-purple);
+    box-shadow: 0 0 8px rgba(126, 87, 194, 0.5);
+}
+
+.flag-input button {
+    padding: 10px 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flag-input button:hover {
+    background-color: var(--dark-purple);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flag-input button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.off-canvas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 80%;
+    max-width: 1000px;
+    height: 80%;
+    max-height: 600px;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    color: var(--primary-purple);
+    display: none;
+    opacity: 0;
+    border-radius: 20px;
+}
+
+.off-canvas.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    display: block;
+}
+
+.off-canvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.off-canvas-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.close-off-canvas {
+    background: none;
+    border: none;
+    color: var(--primary-purple);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.off-canvas-content {
+    display: flex;
+    gap: 20px;
+    height: calc(100% - 60px);
+}
+
+.levels-sidebar {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.level-btn {
+    padding: 10px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.level-btn:hover {
+    background-color: var(--dark-purple);
+}
+
+.game-content {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-content h3 {
+    margin: 0;
+}
+
+.game-content p {
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    z-index: 1000;
+}
+
+.action-buttons button {
+    padding: 10px 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 240px;
+}
+
+.action-buttons button:hover {
+    background-color: var(--dark-purple);
+}
+
+.hint-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    display: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hint-box.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.notes-box {
+    position: fixed;
+    left: 40px;
+    top: 60px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 250px;
+    z-index: 1000;
+}
+
+.notes-box h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.notes-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.notes-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #41045e;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: var(--light-purple);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    z-index: 1000;
+}
+
+.back-button:hover {
+    background-color: var(--dark-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.winning-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    display: none;
+}
+
+.winning-content {
+    width: 75%;
+    max-width: 600px;
+    background: #6a5acd;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.winning-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.winning-content h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+}
+    </style>
 </head>
-
-<body id="top">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-
-</html>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+            <img src="./logo2.png" alt="Logo">
+            <span class="logo-text">Zero-Day Hunters</span>
+        </a>
+    </div>
+    <a href="#" class="menu-item active" onclick="loadGames('all')">
+        <img src="./side-bar3.png" alt=".">
+        <span>All Games</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Cryptography')">
+        <img src="./side-bar2.png" alt=".">
+        <span>Cryptography</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Digital Forensics')">
+        <img src="./side-bar5.png" alt=".">
+        <span>Digital Forensics</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Reverse Engineering')">
+        <img src=".//index2.png" alt=".">
+        <span>Reverse Engineering</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Exploitation')">
+        <img src="./side-bar6.png" alt=".">
+        <span>Exploitation</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Network Security')">
+        <img src="./side-bar8.png" alt=".">
+        <span>Network Security</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Secure Coding')">
+        <img src="./side-bar3.png" alt=".">
+        <span>Secure Coding</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Web Exploitation')">
+        <img src="./side-bar7.png" alt=".">
+        <span>Web Exploitation</span>
+    </a>
+    <a href="#" class="menu-item" onclick="loadGames('Steganography')">
+        <img src=".//side-bar4.png" alt=".">
+        <span>Steganography</span>
+    </a>
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+</div>
+
+<div class="main-content" id="mainContent">
+    <h3>Search</h3>
+    <input type="text" id="searchInput" placeholder="Search for a game..." oninput="searchGames()">
+    <br><br>
+    <div class="games-grid" id="gamesGrid"></div>
+</div>
+
+<div class="off-canvas" id="offCanvas">
+    <div class="off-canvas-header">
+        <h2 class="off-canvas-title"></h2>
+        <button class="close-off-canvas" onclick="closeOffCanvas()">✕</button>
+    </div>
+    <div class="off-canvas-content">
+        <div class="game-content" id="gameContent">
+            <h3 id="gameTitle">Phishing Attack</h3>
+            <p id="gameDescription">In this challenge, you will learn how to detect phishing attacks and protect yourself from them.</p>
+            <div class="flag-input">
+                <input type="text" id="flagInput" placeholder="Enter the flag here">
+                <button class="submit-btn" onclick="submitFlag()">Submit</button>
+            </div>
+            <div class="action-buttons">
+                <button onclick="downloadPDF()">Go to Challenge</button>
+                <button onclick="showHint()">Hint</button>
+            </div>
+            <div class="notes-box">
+                <h4>Suggested Tools:</h4>
+                <ul>
+                    <li>CyberChef</li>
+                    <li>Wireshark</li>
+                    <li>Ghidra</li>
+                    <li>Burp Suite</li>
+                    <li>Nmap</li>
+                    <li>Metasploit</li>
+                    <li>John the Ripper</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="winningScreen" class="winning-screen">
+    <div class="winning-content">
+        <button class="close-btn" onclick="closeWinningScreen()">✕</button>
+        <img src="./vecteezy_3d-winners-minimal-with-golden-cup-and-money-coin-gold_9315259.png" alt="Winning Image" class="winning-image">
+        <h2>You Succeeded!</h2>
+    </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="hint-box" id="hintBox">
+    <p>This hint will help you solve the challenge:</p>
+    <ul>
+        <li><strong>Useful Tool:</strong> <a href="https://gchq.github.io/CyberChef" target="_blank">CyberChef</a></li>
+        <li><strong>Learning Resource:</strong> <a href="https://owasp.org" target="_blank">OWASP</a></li>
+    </ul>
+</div>
+                <script>
+                    // بيانات الألعاب مع فلاغات ثابتة لكل مستوى
+                    const gamesData = {
+                      Cryptography: [
+    {
+        title: "The Hidden Code Puzzle",
+        description: "In a major city, a large tech company was mysteriously hacked. The attackers did not steal any financial data or sensitive information, but they left behind a strange encrypted message. This message was carefully hidden in the internal web page address of the company, and no one has been able to decrypt it so far. The company has enlisted a team of cyber investigators to solve the mystery of this message. The investigators believe that the message may contain a hidden threat or a plan for a larger attack. But the problem is that the code used is unknown, and there is no clear evidence on how to decrypt it. Your task is to help the investigators decrypt this message. Can you discover what this encrypted message contains? Is it a threat? Or is it just a hacker's trick? Time is running out, and every second counts.",
+        flag: "y0u~ctuallygtit",
+        points: 100,
+        type: "Cryptography",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pageUrl: "./crpyto-1.html",
+    },
+    {
+        title: "Hackers' Code!",
+        description: "On a dark night, a mysterious message was discovered on the server of a large tech company. The message was encrypted using a complex substitution algorithm, and no one has been able to decrypt it so far. In addition, a hidden button was found on the page leading to an unknown location. Investigators believe that this message may contain a hidden threat or a plan for a larger attack. But the problem is that the code used is unknown, and there is no clear evidence on how to decrypt it. Your task is to help the investigators decrypt this message. Can you discover what this encrypted message contains? Is it a threat? Or is it just a hacker's trick? Time is running out, and every second counts.",
+        flag: "youareagenius",
+        points: 110,
+        type: "Cryptography",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pageUrl: "./crypto2.1.html",
+    },
+    {
+        title: "The Lost Cipher",
+        description: "An encrypted message was found in an old database. It is believed to contain secret information about a classified project. Your task is to decrypt this message.",
+        flag: "FlagCTF{Lost_Cipher}",
+        points: 120,
+        type: "Cryptography",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pageUrl: "https://example.com/crypto_3",
+    },
+    {
+        title: "The Secret Message",
+        description: "An encrypted message was intercepted by the security team. It is believed to contain a threat to a large tech company. Your task is to decrypt this message.",
+        flag: "FlagCTF{Secret_Message}",
+        points: 130,
+        type: "Cryptography",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pageUrl: "https://example.com/crypto_4",
+    },
+    {
+        title: "The Mysterious Cipher",
+        description: "An encrypted message was found on a tech company's server. It is believed to contain information about an upcoming attack. Your task is to decrypt this message.",
+        flag: "FlagCTF{Mystery_Cipher}",
+        points: 140,
+        type: "Cryptography",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pageUrl: "https://example.com/crypto_5",
+    },
+    {
+        title: "The Puzzling Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Puzzling_Cipher}",
+        points: 150,
+        type: "Cryptography",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pageUrl: "https://example.com/crypto_6",
+    },
+    {
+        title: "The Hidden Secret",
+        description: "An encrypted message was found in an old archive. It is believed to contain information about a secret project. Your task is to decrypt this message.",
+        flag: "FlagCTF{Hidden_Secret}",
+        points: 160,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_7",
+    },
+    {
+        title: "The Ancient Cipher",
+        description: "An encrypted message was discovered in an old book. It is believed to contain important historical information. Your task is to decrypt this message.",
+        flag: "FlagCTF{Ancient_Cipher}",
+        points: 170,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_8",
+    },
+    {
+        title: "The Veiled Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Veiled_Cipher}",
+        points: 180,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_9",
+    },
+    {
+        title: "The Strange Cipher",
+        description: "An encrypted message was found on an unknown server. It is believed to contain information about an upcoming attack. Your task is to decrypt this message.",
+        flag: "FlagCTF{Strange_Cipher}",
+        points: 190,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_10",
+    },
+    {
+        title: "The Shadow Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Shadow_Cipher}",
+        points: 200,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_11",
+    },
+    {
+        title: "The Forgotten Cipher",
+        description: "An encrypted message was found in an old database. It is believed to contain secret information. Your task is to decrypt this message.",
+        flag: "FlagCTF{Forgotten_Cipher}",
+        points: 210,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_12",
+    },
+    {
+        title: "The Forbidden Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Forbidden_Cipher}",
+        points: 220,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_13",
+    },
+    {
+        title: "The Dark Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Dark_Cipher}",
+        points: 230,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_14",
+    },
+    {
+        title: "The Enigmatic Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Enigmatic_Cipher}",
+        points: 240,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_15",
+    },
+    {
+        title: "The Light Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Light_Cipher}",
+        points: 250,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_16",
+    },
+    {
+        title: "The Time Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Time_Cipher}",
+        points: 260,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_17",
+    },
+    {
+        title: "The Sand Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Sand_Cipher}",
+        points: 270,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_18",
+    },
+    {
+        title: "The Ice Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Ice_Cipher}",
+        points: 280,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_19",
+    },
+    {
+        title: "The Fire Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Fire_Cipher}",
+        points: 290,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_20",
+    },
+    {
+        title: "The Water Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Water_Cipher}",
+        points: 300,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_21",
+    },
+    {
+        title: "The Air Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Air_Cipher}",
+        points: 310,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_22",
+    },
+    {
+        title: "The Earth Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Earth_Cipher}",
+        points: 320,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_23",
+    },
+    {
+        title: "The Stars Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Stars_Cipher}",
+        points: 330,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_24",
+    },
+    {
+        title: "The Moon Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Moon_Cipher}",
+        points: 340,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_25",
+    },
+    {
+        title: "The Sun Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Sun_Cipher}",
+        points: 350,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_26",
+    },
+    {
+        title: "The Forest Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Forest_Cipher}",
+        points: 360,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_27",
+    },
+    {
+        title: "The Desert Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Desert_Cipher}",
+        points: 370,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_28",
+    },
+    {
+        title: "The Mountain Cipher",
+        description: "An encrypted message was found in a security system. It is believed to contain information about a potential breach. Your task is to decrypt this message.",
+        flag: "FlagCTF{Mountain_Cipher}",
+        points: 380,
+        type: "Cryptography",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/crypto_29",
+    },
+],
+    "Digital Forensics": [
+    {
+        title: "Digital Forensics Challenge 1",
+        description: "Description of Challenge 1 in Digital Forensics",
+        flag: "FlagCTF{Forensics_Flag_1}",
+        points: 100,
+        type: "Digital Forensics",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pdfUrl: "./challenges/forensics_1.pdf",
+    },
+    {
+        title: "Digital Forensics Challenge 2",
+        description: "Description of Challenge 2 in Digital Forensics",
+        flag: "FlagCTF{Forensics_Flag_2}",
+        points: 110,
+        type: "Digital Forensics",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pageUrl: "https://example.com/forensics_2",
+    },
+    {
+        title: "The Lost Archive",
+        description: "In a major company, a primary server containing sensitive information was hacked. Suspicious files were found on the compromised device. Your task is to analyze these files to uncover hidden evidence that may reveal the identity of the hacker.",
+        flag: "FlagCTF{Forensics_Flag_1}",
+        points: 100,
+        type: "Digital Forensics",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pdfUrl: "./challenges/forensics_1.pdf",
+    },
+    {
+        title: "Suspicious Shadow Connection",
+        description: "A suspicious connection between two devices in a tech company's network was intercepted. It is believed that this connection contains secret messages exchanged between hackers. Your task is to analyze the traffic to find the secret message and decrypt it.",
+        flag: "FlagCTF{Forensics_Flag_2}",
+        points: 110,
+        type: "Digital Forensics",
+        rating: "★★★★★",
+        isUnlocked: true,
+        pageUrl: "https://example.com/forensics_2",
+    },
+    {
+        title: "The Hidden Image",
+        description: "A hidden image was found on the computer of a suspected employee. It is believed that this image contains secret information about a classified project. Your task is to extract this information using digital forensics tools.",
+        flag: "FlagCTF{Forensics_Flag_3}",
+        points: 120,
+        type: "Digital Forensics",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pdfUrl: "./challenges/forensics_3.pdf",
+    },
+    {
+        title: "The Dark Attack",
+        description: "A tech company's network was hit by a major cyber attack. Strange logs were found on the primary server. Your task is to analyze these logs to find the source of the attack and how it occurred.",
+        flag: "FlagCTF{Forensics_Flag_4}",
+        points: 130,
+        type: "Digital Forensics",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pageUrl: "https://example.com/forensics_4",
+    },
+    {
+        title: "The Suspicious Device",
+        description: "A suspicious mobile device was found in an employee's office. It is believed that the device contains evidence of a recent breach. Your task is to analyze the stored data to uncover evidence that may reveal the identity of the hacker.",
+        flag: "FlagCTF{Forensics_Flag_5}",
+        points: 140,
+        type: "Digital Forensics",
+        rating: "★★★★☆",
+        isUnlocked: true,
+        pdfUrl: "./challenges/forensics_5.pdf",
+    },
+    {
+        title: "Encrypted Messages",
+        description: "Encrypted messages were found on a compromised device. Your task is to decrypt them to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_6}",
+        points: 150,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_6.pdf",
+    },
+    {
+        title: "Server Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_7}",
+        points: 160,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_7",
+    },
+    {
+        title: "Deleted Files",
+        description: "Deleted files were found on a suspicious device. Your task is to recover and analyze them.",
+        flag: "FlagCTF{Forensics_Flag_8}",
+        points: 170,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_8.pdf",
+    },
+    {
+        title: "Shadow Attack",
+        description: "A cyber attack was discovered on a company's network. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_9}",
+        points: 180,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_9",
+    },
+    {
+        title: "The Mysterious Device",
+        description: "A suspicious mobile device was found. Your task is to analyze the stored data to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_10}",
+        points: 190,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_10.pdf",
+    },
+    {
+        title: "The Secret Code",
+        description: "Encrypted messages were found on a compromised device. Your task is to decrypt them to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_11}",
+        points: 200,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_11",
+    },
+    {
+        title: "The New Dark Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_12}",
+        points: 210,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_12.pdf",
+    },
+    {
+        title: "The Lost Files",
+        description: "Deleted files were found on a suspicious device. Your task is to recover and analyze them.",
+        flag: "FlagCTF{Forensics_Flag_13}",
+        points: 220,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_13",
+    },
+    {
+        title: "The Hidden Shadow Attack",
+        description: "A cyber attack was discovered on a company's network. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_14}",
+        points: 230,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_14.pdf",
+    },
+    {
+        title: "The Secret Device",
+        description: "A suspicious mobile device was found. Your task is to analyze the stored data to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_15}",
+        points: 240,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_15",
+    },
+    {
+        title: "The Mysterious Code",
+        description: "Encrypted messages were found on a compromised device. Your task is to decrypt them to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_16}",
+        points: 250,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_16.pdf",
+    },
+    {
+        title: "The Deep Shadow Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_17}",
+        points: 260,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_17",
+    },
+    {
+        title: "The Hidden Files",
+        description: "Deleted files were found on a suspicious device. Your task is to recover and analyze them.",
+        flag: "FlagCTF{Forensics_Flag_18}",
+        points: 270,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_18.pdf",
+    },
+    {
+        title: "The Black Shadow Attack",
+        description: "A cyber attack was discovered on a company's network. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_19}",
+        points: 280,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_19",
+    },
+    {
+        title: "The Strange Device",
+        description: "A suspicious mobile device was found. Your task is to analyze the stored data to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_20}",
+        points: 290,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_20.pdf",
+    },
+    {
+        title: "The Lost Code",
+        description: "Encrypted messages were found on a compromised device. Your task is to decrypt them to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_21}",
+        points: 300,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_21",
+    },
+    {
+        title: "The White Shadow Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_22}",
+        points: 310,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_22.pdf",
+    },
+    {
+        title: "The Secret Files",
+        description: "Deleted files were found on a suspicious device. Your task is to recover and analyze them.",
+        flag: "FlagCTF{Forensics_Flag_23}",
+        points: 320,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_23",
+    },
+    {
+        title: "The Red Shadow Attack",
+        description: "A cyber attack was discovered on a company's network. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_24}",
+        points: 330,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_24.pdf",
+    },
+    {
+        title: "The Magical Device",
+        description: "A suspicious mobile device was found. Your task is to analyze the stored data to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_25}",
+        points: 340,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_25",
+    },
+    {
+        title: "The Black Code",
+        description: "Encrypted messages were found on a compromised device. Your task is to decrypt them to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_26}",
+        points: 350,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_26.pdf",
+    },
+    {
+        title: "The Green Shadow Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_27}",
+        points: 360,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_27",
+    },
+    {
+        title: "The Hidden Files",
+        description: "Deleted files were found on a suspicious device. Your task is to recover and analyze them.",
+        flag: "FlagCTF{Forensics_Flag_28}",
+        points: 370,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_28.pdf",
+    },
+    {
+        title: "The Blue Shadow Attack",
+        description: "A cyber attack was discovered on a server. Your task is to analyze the logs to find the source of the attack.",
+        flag: "FlagCTF{Forensics_Flag_29}",
+        points: 380,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pageUrl: "https://example.com/forensics_29",
+    },
+    {
+        title: "The Mysterious Device",
+        description: "A suspicious mobile device was found. Your task is to analyze the stored data to uncover evidence.",
+        flag: "FlagCTF{Forensics_Flag_30}",
+        points: 390,
+        type: "Digital Forensics",
+        rating: "★★★☆☆",
+        isUnlocked: false,
+        pdfUrl: "./challenges/forensics_30.pdf",
+    }
+],
+    "Reverse Engineering": [
+    {
+        "title": "Reverse Engineering Challenge 1",
+        "description": "Description of Challenge 1 in Reverse Engineering",
+        "flag": "FlagCTF{Reverse_Flag_1}",
+        "points": 100,
+        "type": "Reverse Engineering",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/reverse_1.pdf"
+    },
+    {
+        "title": "Reverse Engineering Challenge 2",
+        "description": "Description of Challenge 2 in Reverse Engineering",
+        "flag": "FlagCTF{Reverse_Flag_2}",
+        "points": 110,
+        "type": "Reverse Engineering",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/reverse_2"
+    },
+    {
+        "title": "The Mysterious Program Puzzle",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze this program using reverse engineering to understand how it works and what it does.",
+        "flag": "FlagCTF{Reverse_Flag_1}",
+        "points": 100,
+        "type": "Reverse Engineering",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/reverse_1.pdf"
+    },
+    {
+        "title": "Hidden Program Code",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program and reveal its hidden objectives.",
+        "flag": "FlagCTF{Reverse_Flag_2}",
+        "points": 110,
+        "type": "Reverse Engineering",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/reverse_2"
+    },
+    {
+        "title": "The Lost Program",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_3}",
+        "points": 120,
+        "type": "Reverse Engineering",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/reverse_3.pdf"
+    },
+    {
+        "title": "Protected Program Code",
+        "description": "A program protected with strong security measures was discovered. Your task is to use reverse engineering to bypass this protection and understand how the program works.",
+        "flag": "FlagCTF{Reverse_Flag_4}",
+        "points": 130,
+        "type": "Reverse Engineering",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/reverse_4"
+    },
+    {
+        "title": "Encrypted Program",
+        "description": "An encrypted program was found on a hacked device. Your task is to decrypt it using reverse engineering to reveal its contents.",
+        "flag": "FlagCTF{Reverse_Flag_5}",
+        "points": 140,
+        "type": "Reverse Engineering",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/reverse_5.pdf"
+    },
+    {
+        "title": "The Mysterious Program",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze it using reverse engineering to understand how it works.",
+        "flag": "FlagCTF{Reverse_Flag_6}",
+        "points": 150,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_6.pdf"
+    },
+    {
+        "title": "Hidden Program Code 2",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program.",
+        "flag": "FlagCTF{Reverse_Flag_7}",
+        "points": 160,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_7"
+    },
+    {
+        "title": "The Lost Program 2",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_8}",
+        "points": 170,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_8.pdf"
+    },
+    {
+        "title": "Protected Program Code 2",
+        "description": "A program protected with strong security measures was discovered. Your task is to use reverse engineering to bypass this protection.",
+        "flag": "FlagCTF{Reverse_Flag_9}",
+        "points": 180,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_9"
+    },
+    {
+        "title": "Encrypted Program 2",
+        "description": "An encrypted program was found on a hacked device. Your task is to decrypt it using reverse engineering.",
+        "flag": "FlagCTF{Reverse_Flag_10}",
+        "points": 190,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_10.pdf"
+    },
+    {
+        "title": "The Mysterious Program 2",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze it using reverse engineering to understand how it works.",
+        "flag": "FlagCTF{Reverse_Flag_11}",
+        "points": 200,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_11"
+    },
+    {
+        "title": "Hidden Program Code 3",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program.",
+        "flag": "FlagCTF{Reverse_Flag_12}",
+        "points": 210,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_12.pdf"
+    },
+    {
+        "title": "The Lost Program 3",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_13}",
+        "points": 220,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_13"
+    },
+    {
+        "title": "Protected Program Code 3",
+        "description": "A program protected with strong security measures was discovered. Your task is to use reverse engineering to bypass this protection.",
+        "flag": "FlagCTF{Reverse_Flag_14}",
+        "points": 230,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_14.pdf"
+    },
+    {
+        "title": "Encrypted Program 3",
+        "description": "An encrypted program was found on a hacked device. Your task is to decrypt it using reverse engineering.",
+        "flag": "FlagCTF{Reverse_Flag_15}",
+        "points": 240,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_15"
+    },
+    {
+        "title": "The Mysterious Program 4",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze it using reverse engineering to understand how it works.",
+        "flag": "FlagCTF{Reverse_Flag_16}",
+        "points": 250,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_16.pdf"
+    },
+    {
+        "title": "Hidden Program Code 4",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program.",
+        "flag": "FlagCTF{Reverse_Flag_17}",
+        "points": 260,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_17"
+    },
+    {
+        "title": "The Lost Program 4",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_18}",
+        "points": 270,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_18.pdf"
+    },
+    {
+        "title": "Protected Program Code 4",
+        "description": "A program protected with strong security measures was discovered. Your task is to use reverse engineering to bypass this protection.",
+        "flag": "FlagCTF{Reverse_Flag_19}",
+        "points": 280,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_19"
+    },
+    {
+        "title": "Encrypted Program 4",
+        "description": "An encrypted program was found on a hacked device. Your task is to decrypt it using reverse engineering.",
+        "flag": "FlagCTF{Reverse_Flag_20}",
+        "points": 290,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_20.pdf"
+    },
+    {
+        "title": "The Mysterious Program 5",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze it using reverse engineering to understand how it works.",
+        "flag": "FlagCTF{Reverse_Flag_21}",
+        "points": 300,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_21"
+    },
+    {
+        "title": "Hidden Program Code 5",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program.",
+        "flag": "FlagCTF{Reverse_Flag_22}",
+        "points": 310,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_22.pdf"
+    },
+    {
+        "title": "The Lost Program 5",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_23}",
+        "points": 320,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_23"
+    },
+    {
+        "title": "Protected Program Code 5",
+        "description": "A program protected with strong security measures was discovered. Your task is to use reverse engineering to bypass this protection.",
+        "flag": "FlagCTF{Reverse_Flag_24}",
+        "points": 330,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_24.pdf"
+    },
+    {
+        "title": "Encrypted Program 5",
+        "description": "An encrypted program was found on a hacked device. Your task is to decrypt it using reverse engineering.",
+        "flag": "FlagCTF{Reverse_Flag_25}",
+        "points": 340,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_25"
+    },
+    {
+        "title": "The Mysterious Program 6",
+        "description": "A mysterious program was found on a hacked device. Your task is to analyze it using reverse engineering to understand how it works.",
+        "flag": "FlagCTF{Reverse_Flag_26}",
+        "points": 350,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_26.pdf"
+    },
+    {
+        "title": "Hidden Program Code 6",
+        "description": "A suspicious program was discovered in a tech company's network. Your task is to use reverse engineering to decode this program.",
+        "flag": "FlagCTF{Reverse_Flag_27}",
+        "points": 360,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/reverse_27"
+    },
+    {
+        "title": "The Lost Program 6",
+        "description": "An old program was found in the company's archive. Your task is to analyze it using reverse engineering to understand its hidden functionalities.",
+        "flag": "FlagCTF{Reverse_Flag_28}",
+        "points": 370,
+        "type": "Reverse Engineering",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/reverse_28.pdf"
+    }
+],
+   "Exploitation": [
+    {
+        "title": "Exploitation Challenge 1",
+        "description": "Description of Challenge 1 in Exploitation",
+        "flag": "FlagCTF{Exploit_Flag_1}",
+        "points": 100,
+        "type": "Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/exploit_1.pdf"
+    },
+    {
+        "title": "Exploitation Challenge 2",
+        "description": "Description of Challenge 2 in Exploitation",
+        "flag": "FlagCTF{Exploit_Flag_2}",
+        "points": 110,
+        "type": "Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/exploit_2"
+    },
+    {
+        "title": "Hacking the Vulnerable Server",
+        "description": "A server with a known security vulnerability has been discovered. Your task is to exploit this vulnerability to access the server and retrieve the flag.",
+        "flag": "FlagCTF{Exploit_Flag_1}",
+        "points": 100,
+        "type": "Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/exploit_1.pdf"
+    },
+    {
+        "title": "Legacy Software Vulnerability",
+        "description": "An old program with a security vulnerability has been found. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_2}",
+        "points": 110,
+        "type": "Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/exploit_2"
+    },
+    {
+        "title": "Hacking the Protected System",
+        "description": "A system protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_3}",
+        "points": 120,
+        "type": "Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/exploit_3.pdf"
+    },
+    {
+        "title": "Critical Web Vulnerability",
+        "description": "A website with a critical security vulnerability has been discovered. Your task is to exploit this vulnerability to access sensitive data.",
+        "flag": "FlagCTF{Exploit_Flag_4}",
+        "points": 130,
+        "type": "Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/exploit_4"
+    },
+    {
+        "title": "Hacking the Internal Network",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Exploit_Flag_5}",
+        "points": 140,
+        "type": "Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/exploit_5.pdf"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_6}",
+        "points": 150,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_6.pdf"
+    },
+    {
+        "title": "Hacking the Protected Server",
+        "description": "A server protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the server.",
+        "flag": "FlagCTF{Exploit_Flag_7}",
+        "points": 160,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_7"
+    },
+    {
+        "title": "Weak Application Vulnerability",
+        "description": "An application with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_8}",
+        "points": 170,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_8.pdf"
+    },
+    {
+        "title": "Hacking the Protected Network",
+        "description": "A vulnerability has been discovered in a protected network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Exploit_Flag_9}",
+        "points": 180,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_9"
+    },
+    {
+        "title": "Legacy System Vulnerability",
+        "description": "An old system with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_10}",
+        "points": 190,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_10.pdf"
+    },
+    {
+        "title": "Hacking the Vulnerable Server 2",
+        "description": "A server with a known security vulnerability has been discovered. Your task is to exploit this vulnerability to access the server.",
+        "flag": "FlagCTF{Exploit_Flag_11}",
+        "points": 200,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_11"
+    },
+    {
+        "title": "Legacy Software Vulnerability 2",
+        "description": "An old program with a security vulnerability has been found. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_12}",
+        "points": 210,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_12.pdf"
+    },
+    {
+        "title": "Hacking the Protected System 2",
+        "description": "A system protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_13}",
+        "points": 220,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_13"
+    },
+    {
+        "title": "Critical Web Vulnerability 2",
+        "description": "A website with a critical security vulnerability has been discovered. Your task is to exploit this vulnerability to access sensitive data.",
+        "flag": "FlagCTF{Exploit_Flag_14}",
+        "points": 230,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_14.pdf"
+    },
+    {
+        "title": "Hacking the Internal Network 2",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Exploit_Flag_15}",
+        "points": 240,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_15"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability 2",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_16}",
+        "points": 250,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_16.pdf"
+    },
+    {
+        "title": "Hacking the Protected Server 2",
+        "description": "A server protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the server.",
+        "flag": "FlagCTF{Exploit_Flag_17}",
+        "points": 260,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_17"
+    },
+    {
+        "title": "Weak Application Vulnerability 2",
+        "description": "An application with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_18}",
+        "points": 270,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_18.pdf"
+    },
+    {
+        "title": "Hacking the Protected Network 2",
+        "description": "A vulnerability has been discovered in a protected network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Exploit_Flag_19}",
+        "points": 280,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_19"
+    },
+    {
+        "title": "Legacy System Vulnerability 2",
+        "description": "An old system with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_20}",
+        "points": 290,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_20.pdf"
+    },
+    {
+        "title": "Hacking the Vulnerable Server 3",
+        "description": "A server with a known security vulnerability has been discovered. Your task is to exploit this vulnerability to access the server.",
+        "flag": "FlagCTF{Exploit_Flag_21}",
+        "points": 300,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_21"
+    },
+    {
+        "title": "Legacy Software Vulnerability 3",
+        "description": "An old program with a security vulnerability has been found. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_22}",
+        "points": 310,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_22.pdf"
+    },
+    {
+        "title": "Hacking the Protected System 3",
+        "description": "A system protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_23}",
+        "points": 320,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_23"
+    },
+    {
+        "title": "Critical Web Vulnerability 3",
+        "description": "A website with a critical security vulnerability has been discovered. Your task is to exploit this vulnerability to access sensitive data.",
+        "flag": "FlagCTF{Exploit_Flag_24}",
+        "points": 330,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_24.pdf"
+    },
+    {
+        "title": "Hacking the Internal Network 3",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Exploit_Flag_25}",
+        "points": 340,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_25"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability 3",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the system.",
+        "flag": "FlagCTF{Exploit_Flag_26}",
+        "points": 350,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_26.pdf"
+    },
+    {
+        "title": "Hacking the Protected Server 3",
+        "description": "A server protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the server.",
+        "flag": "FlagCTF{Exploit_Flag_27}",
+        "points": 360,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/exploit_27"
+    },
+    {
+        "title": "Weak Application Vulnerability 3",
+        "description": "An application with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain higher privileges.",
+        "flag": "FlagCTF{Exploit_Flag_28}",
+        "points": 370,
+        "type": "Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/exploit_28.pdf"
+    }
+],
+    "Network Security": [
+    {
+        "title": "Network Security Challenge 1",
+        "description": "Description of Challenge 1 in Network Security",
+        "flag": "FlagCTF{Network_Flag_1}",
+        "points": 100,
+        "type": "Network Security",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/network_1.pdf"
+    },
+    {
+        "title": "Network Security Challenge 2",
+        "description": "Description of Challenge 2 in Network Security",
+        "flag": "FlagCTF{Network_Flag_2}",
+        "points": 110,
+        "type": "Network Security",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/network_2"
+    },
+    {
+        "title": "Hacking the Vulnerable Network",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to access the network and retrieve the flag.",
+        "flag": "FlagCTF{Network_Flag_1}",
+        "points": 100,
+        "type": "Network Security",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/network_1.pdf"
+    },
+    {
+        "title": "Weak Routing Vulnerability",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_2}",
+        "points": 110,
+        "type": "Network Security",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/network_2"
+    },
+    {
+        "title": "Hacking the Protected Network",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_3}",
+        "points": 120,
+        "type": "Network Security",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/network_3.pdf"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_4}",
+        "points": 130,
+        "type": "Network Security",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/network_4"
+    },
+    {
+        "title": "Hacking the Internal Network",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Network_Flag_5}",
+        "points": 140,
+        "type": "Network Security",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/network_5.pdf"
+    },
+    {
+        "title": "Weak Network Vulnerability",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_6}",
+        "points": 150,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_6.pdf"
+    },
+    {
+        "title": "Hacking the Router",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_7}",
+        "points": 160,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_7"
+    },
+    {
+        "title": "Protected Network Vulnerability",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_8}",
+        "points": 170,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_8.pdf"
+    },
+    {
+        "title": "Hacking the Legacy Protocol",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_9}",
+        "points": 180,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_9"
+    },
+    {
+        "title": "Internal Network Vulnerability",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Network_Flag_10}",
+        "points": 190,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_10.pdf"
+    },
+    {
+        "title": "Hacking the Vulnerable Network 2",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_11}",
+        "points": 200,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_11"
+    },
+    {
+        "title": "Router Vulnerability 2",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_12}",
+        "points": 210,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_12.pdf"
+    },
+    {
+        "title": "Hacking the Protected Network 2",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_13}",
+        "points": 220,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_13"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability 2",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_14}",
+        "points": 230,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_14.pdf"
+    },
+    {
+        "title": "Hacking the Internal Network 2",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Network_Flag_15}",
+        "points": 240,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_15"
+    },
+    {
+        "title": "Weak Network Vulnerability 3",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_16}",
+        "points": 250,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_16.pdf"
+    },
+    {
+        "title": "Hacking the Router 3",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_17}",
+        "points": 260,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_17"
+    },
+    {
+        "title": "Protected Network Vulnerability 3",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_18}",
+        "points": 270,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_18.pdf"
+    },
+    {
+        "title": "Hacking the Legacy Protocol 3",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_19}",
+        "points": 280,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_19"
+    },
+    {
+        "title": "Internal Network Vulnerability 3",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Network_Flag_20}",
+        "points": 290,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_20.pdf"
+    },
+    {
+        "title": "Hacking the Vulnerable Network 4",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_21}",
+        "points": 300,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_21"
+    },
+    {
+        "title": "Router Vulnerability 4",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_22}",
+        "points": 310,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_22.pdf"
+    },
+    {
+        "title": "Hacking the Protected Network 4",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_23}",
+        "points": 320,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_23"
+    },
+    {
+        "title": "Legacy Protocol Vulnerability 4",
+        "description": "An old protocol with a security vulnerability has been discovered. Your task is to exploit this vulnerability to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_24}",
+        "points": 330,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_24.pdf"
+    },
+    {
+        "title": "Hacking the Internal Network 4",
+        "description": "A vulnerability has been discovered in a tech company's network. Your task is to exploit this vulnerability to access the internal network.",
+        "flag": "FlagCTF{Network_Flag_25}",
+        "points": 340,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_25"
+    },
+    {
+        "title": "Weak Network Vulnerability 5",
+        "description": "A network with known security vulnerabilities has been discovered. Your task is to exploit these vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_26}",
+        "points": 350,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_26.pdf"
+    },
+    {
+        "title": "Hacking the Router 5",
+        "description": "A router with a security vulnerability has been discovered. Your task is to exploit this vulnerability to control traffic across the network.",
+        "flag": "FlagCTF{Network_Flag_27}",
+        "points": 360,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/network_27"
+    },
+    {
+        "title": "Protected Network Vulnerability 5",
+        "description": "A network protected with strong security measures has been discovered. Your task is to find and exploit vulnerabilities to gain access to the network.",
+        "flag": "FlagCTF{Network_Flag_28}",
+        "points": 370,
+        "type": "Network Security",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/network_28.pdf"
+    }
+],
+   "Secure Coding": [
+    {
+        "title": "Secure Coding Challenge 1",
+        "description": "Description of Challenge 1 in Secure Coding",
+        "flag": "FlagCTF{Secure_Flag_1}",
+        "points": 100,
+        "type": "Secure Coding",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/secure_1.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 2",
+        "description": "Description of Challenge 2 in Secure Coding",
+        "flag": "FlagCTF{Secure_Flag_2}",
+        "points": 110,
+        "type": "Secure Coding",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/secure_2"
+    },
+    {
+        "title": "Secure Coding Challenge 1",
+        "description": "A vulnerability has been discovered in a codebase that uses weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_1}",
+        "points": 100,
+        "type": "Secure Coding",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/secure_1.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 2",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_2}",
+        "points": 110,
+        "type": "Secure Coding",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/secure_2"
+    },
+    {
+        "title": "Secure Coding Challenge 3",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_3}",
+        "points": 120,
+        "type": "Secure Coding",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/secure_3.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 4",
+        "description": "A codebase has been found to contain a vulnerability that allows boundary overflows. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_4}",
+        "points": 130,
+        "type": "Secure Coding",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/secure_4"
+    },
+    {
+        "title": "Secure Coding Challenge 5",
+        "description": "A codebase has been discovered using a static encryption key. Your task is to replace it with a dynamic and secure key.",
+        "flag": "FlagCTF{Secure_Flag_5}",
+        "points": 140,
+        "type": "Secure Coding",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/secure_5.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 6",
+        "description": "A codebase has been discovered using weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_6}",
+        "points": 150,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_6.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 7",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_7}",
+        "points": 160,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_7"
+    },
+    {
+        "title": "Secure Coding Challenge 8",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_8}",
+        "points": 170,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_8.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 9",
+        "description": "A codebase has been found to contain a vulnerability that allows boundary overflows. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_9}",
+        "points": 180,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_9"
+    },
+    {
+        "title": "Secure Coding Challenge 10",
+        "description": "A codebase has been discovered using a static encryption key. Your task is to replace it with a dynamic and secure key.",
+        "flag": "FlagCTF{Secure_Flag_10}",
+        "points": 190,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_10.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 11",
+        "description": "A codebase has been discovered using weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_11}",
+        "points": 200,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_11"
+    },
+    {
+        "title": "Secure Coding Challenge 12",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_12}",
+        "points": 210,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_12.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 13",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_13}",
+        "points": 220,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_13"
+    },
+    {
+        "title": "Secure Coding Challenge 14",
+        "description": "A codebase has been found to contain a vulnerability that allows boundary overflows. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_14}",
+        "points": 230,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_14.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 15",
+        "description": "A codebase has been discovered using a static encryption key. Your task is to replace it with a dynamic and secure key.",
+        "flag": "FlagCTF{Secure_Flag_15}",
+        "points": 240,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_15"
+    },
+    {
+        "title": "Secure Coding Challenge 16",
+        "description": "A codebase has been discovered using weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_16}",
+        "points": 250,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_16.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 17",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_17}",
+        "points": 260,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_17"
+    },
+    {
+        "title": "Secure Coding Challenge 18",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_18}",
+        "points": 270,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_18.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 19",
+        "description": "A codebase has been found to contain a vulnerability that allows boundary overflows. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_19}",
+        "points": 280,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_19"
+    },
+    {
+        "title": "Secure Coding Challenge 20",
+        "description": "A codebase has been discovered using a static encryption key. Your task is to replace it with a dynamic and secure key.",
+        "flag": "FlagCTF{Secure_Flag_20}",
+        "points": 290,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_20.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 21",
+        "description": "A codebase has been discovered using weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_21}",
+        "points": 300,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_21"
+    },
+    {
+        "title": "Secure Coding Challenge 22",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_22}",
+        "points": 310,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_22.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 23",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_23}",
+        "points": 320,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_23"
+    },
+    {
+        "title": "Secure Coding Challenge 24",
+        "description": "A codebase has been found to contain a vulnerability that allows boundary overflows. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_24}",
+        "points": 330,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_24.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 25",
+        "description": "A codebase has been discovered using a static encryption key. Your task is to replace it with a dynamic and secure key.",
+        "flag": "FlagCTF{Secure_Flag_25}",
+        "points": 340,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_25"
+    },
+    {
+        "title": "Secure Coding Challenge 26",
+        "description": "A codebase has been discovered using weak encryption. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_26}",
+        "points": 350,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_26.pdf"
+    },
+    {
+        "title": "Secure Coding Challenge 27",
+        "description": "A codebase has been found to contain a vulnerability that allows malicious code injection. Your task is to fix this vulnerability using secure coding practices.",
+        "flag": "FlagCTF{Secure_Flag_27}",
+        "points": 360,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/secure_27"
+    },
+    {
+        "title": "Secure Coding Challenge 28",
+        "description": "A codebase has been discovered using an outdated and insecure encryption algorithm. Your task is to replace it with a secure algorithm.",
+        "flag": "FlagCTF{Secure_Flag_28}",
+        "points": 370,
+        "type": "Secure Coding",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/secure_28.pdf"
+    }
+],
+    "Web Exploitation": [
+    {
+        "title": "Web Exploitation Challenge 1",
+        "description": "Description of Challenge 1 in Web Exploitation",
+        "flag": "FlagCTF{Web_Flag_1}",
+        "points": 100,
+        "type": "Web Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/web_1.pdf"
+    },
+    {
+        "title": "Web Exploitation Challenge 2",
+        "description": "Description of Challenge 2 in Web Exploitation",
+        "flag": "FlagCTF{Web_Flag_2}",
+        "points": 110,
+        "type": "Web Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/web_2"
+    },
+    {
+        "title": "SQL Injection Vulnerability",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_1}",
+        "points": 100,
+        "type": "Web Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/web_1.pdf"
+    },
+    {
+        "title": "XSS Vulnerability",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_2}",
+        "points": 110,
+        "type": "Web Exploitation",
+        "rating": "★★★★★",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/web_2"
+    },
+    {
+        "title": "CSRF Vulnerability",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_3}",
+        "points": 120,
+        "type": "Web Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/web_3.pdf"
+    },
+    {
+        "title": "File Upload Vulnerability",
+        "description": "A website with a file upload vulnerability has been discovered. Your task is to exploit this vulnerability to upload malicious files.",
+        "flag": "FlagCTF{Web_Flag_4}",
+        "points": 130,
+        "type": "Web Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pageUrl": "https://example.com/web_4"
+    },
+    {
+        "title": "Phishing Vulnerability",
+        "description": "A website with a phishing vulnerability has been discovered. Your task is to exploit this vulnerability to steal user data.",
+        "flag": "FlagCTF{Web_Flag_5}",
+        "points": 140,
+        "type": "Web Exploitation",
+        "rating": "★★★★☆",
+        "isUnlocked": true,
+        "pdfUrl": "./challenges/web_5.pdf"
+    },
+    {
+        "title": "SQL Injection Vulnerability 2",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_6}",
+        "points": 150,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_6.pdf"
+    },
+    {
+        "title": "XSS Vulnerability 2",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_7}",
+        "points": 160,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_7"
+    },
+    {
+        "title": "CSRF Vulnerability 2",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_8}",
+        "points": 170,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_8.pdf"
+    },
+    {
+        "title": "File Upload Vulnerability 2",
+        "description": "A website with a file upload vulnerability has been discovered. Your task is to exploit this vulnerability to upload malicious files.",
+        "flag": "FlagCTF{Web_Flag_9}",
+        "points": 180,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_9"
+    },
+    {
+        "title": "Phishing Vulnerability 2",
+        "description": "A website with a phishing vulnerability has been discovered. Your task is to exploit this vulnerability to steal user data.",
+        "flag": "FlagCTF{Web_Flag_10}",
+        "points": 190,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_10.pdf"
+    },
+    {
+        "title": "SQL Injection Vulnerability 3",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_11}",
+        "points": 200,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_11"
+    },
+    {
+        "title": "XSS Vulnerability 3",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_12}",
+        "points": 210,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_12.pdf"
+    },
+    {
+        "title": "CSRF Vulnerability 3",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_13}",
+        "points": 220,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_13"
+    },
+    {
+        "title": "File Upload Vulnerability 3",
+        "description": "A website with a file upload vulnerability has been discovered. Your task is to exploit this vulnerability to upload malicious files.",
+        "flag": "FlagCTF{Web_Flag_14}",
+        "points": 230,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_14.pdf"
+    },
+    {
+        "title": "Phishing Vulnerability 3",
+        "description": "A website with a phishing vulnerability has been discovered. Your task is to exploit this vulnerability to steal user data.",
+        "flag": "FlagCTF{Web_Flag_15}",
+        "points": 240,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_15"
+    },
+    {
+        "title": "SQL Injection Vulnerability 4",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_16}",
+        "points": 250,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_16.pdf"
+    },
+    {
+        "title": "XSS Vulnerability 4",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_17}",
+        "points": 260,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_17"
+    },
+    {
+        "title": "CSRF Vulnerability 4",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_18}",
+        "points": 270,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_18.pdf"
+    },
+    {
+        "title": "File Upload Vulnerability 4",
+        "description": "A website with a file upload vulnerability has been discovered. Your task is to exploit this vulnerability to upload malicious files.",
+        "flag": "FlagCTF{Web_Flag_19}",
+        "points": 280,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_19"
+    },
+    {
+        "title": "Phishing Vulnerability 4",
+        "description": "A website with a phishing vulnerability has been discovered. Your task is to exploit this vulnerability to steal user data.",
+        "flag": "FlagCTF{Web_Flag_20}",
+        "points": 290,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_20.pdf"
+    },
+    {
+        "title": "SQL Injection Vulnerability 5",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_21}",
+        "points": 300,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_21"
+    },
+    {
+        "title": "XSS Vulnerability 5",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_22}",
+        "points": 310,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_22.pdf"
+    },
+    {
+        "title": "CSRF Vulnerability 5",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_23}",
+        "points": 320,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_23.pdf"
+    },
+    {
+        "title": "File Upload Vulnerability 5",
+        "description": "A website with a file upload vulnerability has been discovered. Your task is to exploit this vulnerability to upload malicious files.",
+        "flag": "FlagCTF{Web_Flag_24}",
+        "points": 330,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_24"
+    },
+    {
+        "title": "Phishing Vulnerability 5",
+        "description": "A website with a phishing vulnerability has been discovered. Your task is to exploit this vulnerability to steal user data.",
+        "flag": "FlagCTF{Web_Flag_25}",
+        "points": 340,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_25.pdf"
+    },
+    {
+        "title": "SQL Injection Vulnerability 6",
+        "description": "A website with an SQL injection vulnerability has been discovered. Your task is to exploit this vulnerability to extract sensitive data.",
+        "flag": "FlagCTF{Web_Flag_26}",
+        "points": 350,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pageUrl": "https://example.com/web_26"
+    },
+    {
+        "title": "XSS Vulnerability 6",
+        "description": "A website with an XSS vulnerability has been discovered. Your task is to exploit this vulnerability to execute malicious code.",
+        "flag": "FlagCTF{Web_Flag_27}",
+        "points": 360,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_27.pdf"
+    },
+    {
+        "title": "CSRF Vulnerability 6",
+        "description": "A website with a CSRF vulnerability has been discovered. Your task is to exploit this vulnerability to execute unauthorized requests.",
+        "flag": "FlagCTF{Web_Flag_28}",
+        "points": 370,
+        "type": "Web Exploitation",
+        "rating": "★★★☆☆",
+        "isUnlocked": false,
+        "pdfUrl": "./challenges/web_28.pdf"
+    }
+],
+   
+    "Steganography": [
+        {
+            "title": "Information Hiding Challenge 1",
+            "description": "Description of Challenge 1 in information hiding",
+            "flag": "FlagCTF{Stego_Flag_1}",
+            "points": 100,
+            "type": "Steganography",
+            "rating": "★★★★★",
+            "isUnlocked": true,
+            "pdfUrl": "./challenges/stego_1.pdf"
+        },
+        {
+            "title": "Information Hiding Challenge 2",
+            "description": "Description of Challenge 2 in information hiding",
+            "flag": "FlagCTF{Stego_Flag_2}",
+            "points": 110,
+            "type": "Steganography",
+            "rating": "★★★★★",
+            "isUnlocked": true,
+            "pageUrl": "https://example.com/stego_2"
+        },
+        {
+            "title": "Hidden Message in Image",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_1}",
+            "points": 100,
+            "type": "Steganography",
+            "rating": "★★★★★",
+            "isUnlocked": true,
+            "pdfUrl": "./challenges/stego_1.pdf"
+        },
+        {
+            "title": "Hidden File in Audio",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_2}",
+            "points": 110,
+            "type": "Steganography",
+            "rating": "★★★★★",
+            "isUnlocked": true,
+            "pageUrl": "https://example.com/stego_2"
+        },
+        {
+            "title": "Hidden Message in Video",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_3}",
+            "points": 120,
+            "type": "Steganography",
+            "rating": "★★★★☆",
+            "isUnlocked": true,
+            "pdfUrl": "./challenges/stego_3.pdf"
+        },
+        {
+            "title": "Hidden File in Text",
+            "description": "A text containing a hidden file has been found. Your task is to extract this file using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_4}",
+            "points": 130,
+            "type": "Steganography",
+            "rating": "★★★★☆",
+            "isUnlocked": true,
+            "pageUrl": "https://example.com/stego_4"
+        },
+        {
+            "title": "Hidden Message in Digital Image",
+            "description": "A digital image containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_5}",
+            "points": 140,
+            "type": "Steganography",
+            "rating": "★★★★☆",
+            "isUnlocked": true,
+            "pdfUrl": "./challenges/stego_5.pdf"
+        },
+        {
+            "title": "Hidden Message in Image 2",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_6}",
+            "points": 150,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_6.pdf"
+        },
+        {
+            "title": "Hidden File in Audio 2",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_7}",
+            "points": 160,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_7"
+        },
+        {
+            "title": "Hidden Message in Video 2",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_8}",
+            "points": 170,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_8.pdf"
+        },
+        {
+            "title": "Hidden File in Text 2",
+            "description": "A text containing a hidden file has been found. Your task is to extract this file using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_9}",
+            "points": 180,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_9"
+        },
+        {
+            "title": "Hidden Message in Digital Image 2",
+            "description": "A digital image containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_10}",
+            "points": 190,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_10.pdf"
+        },
+        {
+            "title": "Hidden Message in Image 3",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_11}",
+            "points": 200,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_11"
+        },
+        {
+            "title": "Hidden File in Audio 3",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_12}",
+            "points": 210,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_12.pdf"
+        },
+        {
+            "title": "Hidden Message in Video 3",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_13}",
+            "points": 220,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_13"
+        },
+        {
+            "title": "Hidden File in Text 3",
+            "description": "A text containing a hidden file has been found. Your task is to extract this file using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_14}",
+            "points": 230,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_14.pdf"
+        },
+        {
+            "title": "Hidden Message in Digital Image 3",
+            "description": "A digital image containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_15}",
+            "points": 240,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_15"
+        },
+        {
+            "title": "Hidden Message in Image 4",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_16}",
+            "points": 250,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_16.pdf"
+        },
+        {
+            "title": "Hidden File in Audio 4",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_17}",
+            "points": 260,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_17"
+        },
+        {
+            "title": "Hidden Message in Video 4",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_18}",
+            "points": 270,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_18.pdf"
+        },
+        {
+            "title": "Hidden File in Text 4",
+            "description": "A text containing a hidden file has been found. Your task is to extract this file using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_19}",
+            "points": 280,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_19"
+        },
+        {
+            "title": "Hidden Message in Digital Image 4",
+            "description": "A digital image containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_20}",
+            "points": 290,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_20.pdf"
+        },
+        {
+            "title": "Hidden Message in Image 5",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_21}",
+            "points": 300,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_21"
+        },
+        {
+            "title": "Hidden File in Audio 5",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_22}",
+            "points": 310,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_22.pdf"
+        },
+        {
+            "title": "Hidden Message in Video 5",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_23}",
+            "points": 320,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_23.pdf"
+        },
+        {
+            "title": "Hidden File in Text 5",
+            "description": "A text containing a hidden file has been found. Your task is to extract this file using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_24}",
+            "points": 330,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_24"
+        },
+        {
+            "title": "Hidden Message in Digital Image 5",
+            "description": "A digital image containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_25}",
+            "points": 340,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_25.pdf"
+        },
+        {
+            "title": "Hidden Message in Image 6",
+            "description": "An image containing a hidden message has been found. Your task is to use steganography tools to extract this message.",
+            "flag": "FlagCTF{Stego_Flag_26}",
+            "points": 350,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pageUrl": "https://example.com/stego_26"
+        },
+        {
+            "title": "Hidden File in Audio 6",
+            "description": "An audio file containing hidden information has been found. Your task is to extract this information using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_27}",
+            "points": 360,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_27.pdf"
+        },
+        {
+            "title": "Hidden Message in Video 6",
+            "description": "A video containing a hidden message has been found. Your task is to extract this message using steganography tools.",
+            "flag": "FlagCTF{Stego_Flag_28}",
+            "points": 370,
+            "type": "Steganography",
+            "rating": "★★★☆☆",
+            "isUnlocked": false,
+            "pdfUrl": "./challenges/stego_28.pdf"
+        }
+    ],
+};
+
+
+
+
+                   
+
+
+
+
+                    // دالة للحصول على تقدم عشوائي لكل تصنيف
+                    function getProgressForCategory(category, index) {
+                        const progressCount = {
+                            Cryptography: 0,
+                            "Digital Forensics": 0,
+                            "Reverse Engineering": 0,
+                            Exploitation: 0,
+                            "Network Security": 0,
+                            "Secure Coding": 0,
+                            "Web Exploitation": 0,
+                            Steganography: 0,
+                        };
+                        if (index < progressCount[category]) {
+                            return Math.floor(Math.random() * 100);
+                        }
+                        return 0; // لا تقدم للألعاب المغلقة
+                    }
+                    
+let currentGame = null;
+
+function loadGames(category) {
+    const gamesGrid = document.getElementById("gamesGrid");
+    gamesGrid.innerHTML = "";
+
+    let games = [];
+    if (category === "all") {
+        Object.values(gamesData).forEach(categoryGames => games.push(...categoryGames));
+    } else {
+        games = gamesData[category];
+    }
+
+    games.sort((a, b) => b.isUnlocked - a.isUnlocked);
+
+    games.forEach((game, index) => {
+        const gameCard = document.createElement("div");
+        gameCard.className = "game-card";
+        gameCard.innerHTML = `
+            <img src="https://via.placeholder.com/300x150" alt="Game Image" class="game-image">
+            <div class="game-header">
+                <span class="game-title">${game.title}</span>
+                <span class="game-points">${game.points} Points</span>
+            </div>
+            <div class="game-footer">
+                <div class="rating">${game.rating}</div>
+                <span class="game-type">${game.type}</span>
+                <ion-icon name="trophy" class="achievement-icon"></ion-icon>
+            </div>
+            ${game.isUnlocked && game.progress > 0 ? `
+            <div class="progress-bar">
+                <div class="progress" style="width: ${game.progress}%;"></div>
+            </div>
+            ` : ''}
+            <div class="game-status ${game.isUnlocked ? '' : 'locked'}">
+                ${game.isUnlocked ? 'Unlocked' : 'Locked'}
+            </div>
+        `;
+        if (game.isUnlocked) {
+            gameCard.addEventListener("click", () => openOffCanvas(game));
+        } else {
+            gameCard.style.opacity = "0.6";
+            gameCard.style.cursor = "not-allowed";
+            gameCard.addEventListener("click", () => {
+                alert("This game is locked. Please complete previous games to unlock it.");
+            });
+        }
+        gamesGrid.appendChild(gameCard);
+    });
+
+    document.querySelectorAll(".menu-item").forEach((item) => {
+        item.classList.remove("active");
+    });
+    event.currentTarget.classList.add("active");
+}
+
+function openOffCanvas(game) {
+    const offCanvas = document.getElementById("offCanvas");
+    const overlay = document.getElementById("overlay");
+    const gameTitle = document.getElementById("gameTitle");
+    const gameDescription = document.getElementById("gameDescription");
+
+    gameTitle.textContent = game.title;
+    gameDescription.textContent = game.description;
+    currentGame = game;
+
+    offCanvas.classList.add("active");
+    overlay.classList.add("active");
+}
+
+function closeOffCanvas() {
+    const offCanvas = document.getElementById("offCanvas");
+    const overlay = document.getElementById("overlay");
+    const submitButton = document.querySelector(".submit-btn");
+
+    submitButton.style.backgroundColor = "";
+    submitButton.classList.remove("error");
+
+    const flagInput = document.getElementById("flagInput");
+    flagInput.value = "";
+
+    offCanvas.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+function downloadPDF() {
+    if (!currentGame) {
+        alert("Game not available!");
+        return;
+    }
+
+    if (currentGame.pdfUrl) {
+        const link = document.createElement("a");
+        link.href = currentGame.pdfUrl;
+        link.download = `challenge_${currentGame.title}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("PDF file downloaded successfully!");
+    } else if (currentGame.pageUrl) {
+        window.open(currentGame.pageUrl, "_blank");
+    } else {
+        const defaultPdfUrl = "./challenges/default_challenge.pdf";
+        const link = document.createElement("a");
+        link.href = defaultPdfUrl;
+        link.download = "default_challenge.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("Default PDF file downloaded successfully!");
+    }
+}
+
+function submitFlag() {
+    const flagInput = document.getElementById("flagInput");
+    const submitButton = document.querySelector(".submit-btn");
+
+    if (flagInput.value.trim() === "") {
+        alert("Flag is empty! Please enter the flag.");
+        submitButton.style.backgroundColor = "var(--error-red)";
+        submitButton.classList.add("error");
+        setTimeout(() => submitButton.classList.remove("error"), 500);
+    } else if (flagInput.value.trim() === currentGame.flag) {
+        submitButton.style.backgroundColor = "var(--success-green)";
+        setTimeout(() => {
+            showWinningScreen();
+        }, 1000);
+    } else {
+        alert("Incorrect flag! Try again.");
+        submitButton.style.backgroundColor = "var(--error-red)";
+        submitButton.classList.add("error");
+        setTimeout(() => submitButton.classList.remove("error"), 500);
+    }
+}
+
+function showWinningScreen() {
+    const winningScreen = document.getElementById("winningScreen");
+    winningScreen.style.display = "flex";
+    closeOffCanvas();
+
+    setTimeout(() => {
+        closeWinningScreen();
+    }, 4000);
+}
+
+function closeWinningScreen() {
+    const winningScreen = document.getElementById("winningScreen");
+    winningScreen.style.display = "none";
+}
+
+function showHint() {
+    const hintBox = document.getElementById("hintBox");
+    hintBox.classList.toggle("active");
+}
+
+function searchGames() {
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+    const games = document.querySelectorAll(".game-card");
+    games.forEach(game => {
+        const title = game.querySelector(".game-title").textContent.toLowerCase();
+        if (title.includes(searchTerm)) {
+            game.style.display = "block";
+        } else {
+            game.style.display = "none";
+        }
+    });
+}
+
+window.onload = () => loadGames("all");
+</script>
+            
+                <script src="./assets/js/script.js"></script>
+                <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+            </body>
+            </html>

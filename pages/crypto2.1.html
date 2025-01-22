@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mada</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #9b30ff;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            border: 2px solid #9b30ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .congratulations {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .hidden-link {
+            text-decoration: none;
+            color: #9b30ff;
+            cursor: pointer;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #9b30ff;
+            }
+            to {
+                text-shadow: 0 0 20px #9b30ff;
+            }
+        }
+
+        .ascii-art {
+            font-family: monospace;
+            white-space: pre;
+            margin: 20px 0;
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            Mada
+        </div>
+        <div class="congratulations">
+            Where is everyone hiding<a href="2ndgames2.html" class="hidden-link">?</a> 
+        </div>
+    </div>
+    <!-- ZGlkIHlvdSB0aGluayBpdCB3aWxsIGJlIHRoYXQgZWFzeT8ga2VlcCB0cnlpbmcgPDM= -->
+</body>
+</html>

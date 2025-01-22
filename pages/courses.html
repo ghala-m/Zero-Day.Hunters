@@ -5,122 +5,200 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 
-    - primary meta tags
-  -->
-  <title>Zero-Day Hunters - Play ,Try ,Learn ,Discover and more!</title>
-  <meta name="title" content="Unigine - Epic Games Made For True Gamers!">
-  <meta name="description" content="This is an esports and gaming html template made by codewithsadee">
-
-  <!-- 
-    - favicon
-  -->
+  <title>Courses Page</title>
+  <meta name="title" content="Zero-Day Hunters - تحديات أمنية تفاعلية!">
+  <meta name="description" content="Zero-Day Hunters - منصة تعليمية تفاعلية للأمن السيبراني.">
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Work+Sans:wght@600&display=swap"
-    rel="stylesheet">
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- 
-    - preload images
-  -->
-  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-bg.png">
-
-</head>
-
-<body id="top">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Work+Sans:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preload" as="image" href="./images/hero-banner.png">
+  <link rel="preload" as="image" href="./images/hero-banner-bg.png">
+  <style>
+    :root {
+      --primary-purple: #4811e0a5;
+      --light-purple: rgb(63, 26, 124); /* بنفسجي مع شفافية */
+      --dark-purple: #2a0066;
+      --white: #ffffff;
+      --gray: #666;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+    background-image: url("./body-bg.jpg");
+    background-color: var(--primary-purple);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: 'Oxanium', sans-serif;
+}
 
   
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: var(--white);
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border-radius: 0 20px 20px 0;
+      overflow-y: auto;
+    }
 
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
 
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      color: black;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      color: black;
+      text-decoration: none;
+      margin-bottom: 10px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      background-color: var(--light-purple);
+      color: var(--white);
+      transform: translateX(-5px);
+    }
+
+    .menu-item.active {
+      background-color: var(--light-purple);
+      color: var(--white);
+    }
+
+    .menu-item img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .menu-item span {
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+      margin-left: 150px; /* يمنع تداخل المحتوى مع السايد بار */
+      flex: 1;
+      padding: 20px;
+      display: grid;
+      grid-template-rows: 80% 220%; /* صفين: الأول 25% والثاني 75% */
+      grid-template-columns: 10% 65% 21%; /* عمودين: الأول 75% والثاني 25% */
+      gap: 20px; /* المسافة بين المربعات */
+    }
+
+    .box {
+      background-color: var(--primary-purple);
+      border-radius: 20px; /* زوايا غير حادة */
+      box-shadow: var(--shadow);
+      padding: 20px;
+      color: var(--white);
+    }
+
+    .box-1 {
+      grid-column: 2 / 4; /* يمتد من البداية إلى النهاية */
+      grid-row: 1 / 2; /* الصف الأول */
+    }
+
+    .box-2 {
+      grid-column: 2 / 3; /* العمود الأول */
+      grid-row: 2 / 3; /* الصف الثاني */
+    }
+
+    .box-3 {
+      grid-column: 3 / 3; /* العمود الثاني */
+      grid-row: 2 / 3; /* الصف الثاني */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <img src="./logo2.png" alt="Logo">
+        <span class="logo-text">Zero-Day Hunters</span>
+      </a>
+    </div>
+    <a href="#" class="menu-item active">
+      <img src="./side-bar3.png" alt=".">
+      <span>All Courses</span>
+    </a>
+    <a href="#" class="menu-item"> <img src="./side-bar2.png" alt=".">
+      <span>Cryptography</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="./side-bar5.png" alt=".">
+      <span>Digital Forensics</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src=".//index2.png" alt=".">
+      <span>Reverse Engineering</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="./side-bar6.png" alt=".">
+      <span>Exploitation</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="./side-bar8.png" alt=".">
+      <span>Network Security</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="./side-bar3.png" alt=".">
+      <span>Secure Coding</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src="./side-bar7.png" alt=".">
+      <span>Web Exploitation</span>
+    </a>
+    <a href="#" class="menu-item">
+      <img src=".//side-bar4.png" alt=".">
+      <span>Steganography</span>
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="box box-1">
+      <h2>المربع الأول</h2>
+
+    </div>
+    <div class="box box-2">
+      <h2>المربع الثاني</h2>
+
+    </div>
+    <div class="box box-3">
+      <h2>المربع الثالث</h2>
+
+    </div>
+  </div>
 </body>
 
 </html>
